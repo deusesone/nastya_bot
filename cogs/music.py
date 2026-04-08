@@ -58,10 +58,10 @@ class YTDLSource(discord.PCMVolumeTransformer):
         return cls(discord.FFmpegPCMAudio(data["url"], **FFMPEG_OPTIONS), data=data)
 
     @staticmethod
-    def format_duration(seconds: int) -> str:
+    def format_duration(seconds) -> str:
         if not seconds:
             return "?"
-        m, s = divmod(seconds, 60)
+        m, s = divmod(int(seconds), 60)
         h, m = divmod(m, 60)
         if h:
             return f"{h}:{m:02d}:{s:02d}"
